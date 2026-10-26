@@ -1,0 +1,265 @@
+/* Lantern Glass - a wallpaper skin for the DeepSeek Harness Web GUI.
+ *
+ * The wallpaper is painted by the <body>; the chrome sits on it in warm paper
+ * tones, and the conversation paints the artwork again on itself so pages and
+ * dialogs stay solid without hiding the picture from the chat.
+ */
+
+:root {
+  --dsh-skin-wallpaper: __WALLPAPER_VALUE__;
+}
+
+/* ---------------------------------------------------------------- wallpaper */
+
+body {
+  background-color: #1a1411 !important;
+  background-image:
+    radial-gradient(120% 90% at 50% -10%, rgba(255, 188, 120, 0.16), rgba(255, 188, 120, 0) 55%),
+    linear-gradient(180deg, rgba(28, 16, 10, 0.02) 0%, rgba(24, 13, 8, 0.1) 58%, rgba(18, 10, 6, 0.2) 100%),
+    var(--dsh-skin-wallpaper) !important;
+  background-position: 50% 50%, 50% 50%, 50% 44% !important;
+  background-size: cover, cover, cover !important;
+  background-repeat: no-repeat, no-repeat, no-repeat !important;
+  background-attachment: fixed, fixed, fixed !important;
+}
+
+body[data-ds-dark-theme] {
+  background-image:
+    radial-gradient(120% 90% at 50% -10%, rgba(255, 170, 96, 0.1), rgba(255, 170, 96, 0) 55%),
+    linear-gradient(180deg, rgba(5, 3, 2, 0.3) 0%, rgba(5, 3, 2, 0.34) 55%, rgba(5, 3, 2, 0.4) 100%),
+    var(--dsh-skin-wallpaper) !important;
+}
+
+/* The frame must not add its own veil: the columns already carry one. `:has()`
+ * finds the frame through the overlay layer it always renders. No backdrop
+ * blur here: the artwork stays sharply readable through the panes. */
+#root div:has(> [data-shell-overlay]) {
+  background-color: transparent !important;
+}
+
+/* ------------------------------------------------------- light glass panes */
+
+/* Default: readable surfaces in a deeper warm paper tone. Pages, dialogs,
+ * menus and cards must stay legible over a busy photo, so everything outside
+ * the chat keeps a solid veil; only the conversation opens the artwork up. */
+body {
+  --dsw-alias-bg-base: rgba(238, 222, 200, 0.92) !important;
+  --dsw-alias-bg-module-platform: rgba(235, 218, 195, 0.9) !important;
+  --dsw-alias-bg-layer-1: rgba(242, 228, 208, 0.93) !important;
+  --dsw-alias-bg-layer-2: rgba(238, 223, 202, 0.95) !important;
+  --dsw-alias-bg-layer-3: rgba(234, 218, 196, 0.97) !important;
+  --dsw-alias-settings-card-fill: rgba(238, 223, 202, 0.95) !important;
+  --dsw-specific-sidebar-fill: rgba(255, 245, 234, 0.44) !important;
+  --dsw-specific-input-major: rgba(247, 236, 221, 0.92) !important;
+  --dsw-specific-bubble: rgba(255, 219, 183, 0.86) !important;
+  --dsw-specific-tip: rgba(240, 226, 205, 0.95) !important;
+  --dsw-specific-selector: rgba(236, 220, 197, 0.93) !important;
+  /* Popovers and menus are paper too, not the host's translucent white. */
+  --dsw-specific-menu: rgba(240, 226, 205, 0.98) !important;
+  --dsw-menu-surface-fill: rgba(240, 226, 205, 0.98) !important;
+}
+
+/* The center and right columns are solid warm paper: pages, the diff viewer
+ * and every panel must never show the photo through their text. */
+#root div[class*="_centerCol"],
+#root div[class*="_rightbarCol"] {
+  background-color: rgb(238, 222, 200) !important;
+}
+
+/* The conversation paints the artwork on itself - one light veil over the
+ * photo - so the solid column behind it stays hidden on other pages. Its
+ * subtree also gets the see-through base back, which is what the composer
+ * dock and transcript panels are painted with. */
+#root div:has(> [data-conversation-content]) {
+  background-color: rgb(238, 222, 200) !important;
+  background-image:
+    linear-gradient(rgba(255, 250, 243, 0.26), rgba(255, 250, 243, 0.26)),
+    var(--dsh-skin-wallpaper) !important;
+  background-position: 50% 50%, 50% 44% !important;
+  background-size: cover, cover !important;
+  background-repeat: no-repeat, no-repeat !important;
+  background-attachment: fixed, fixed !important;
+  --dsw-alias-bg-base: rgba(255, 250, 243, 0.26) !important;
+  --dsw-alias-bg-module-platform: rgba(255, 247, 238, 0.26) !important;
+}
+
+/* The transcript sits directly on that artwork. */
+[data-conversation-content] {
+  background-color: transparent !important;
+}
+
+/* Popovers, menus and toasts render in the frame's overlay layer. */
+#root [data-shell-overlay] {
+  --dsw-alias-bg-base: rgba(238, 222, 200, 0.96) !important;
+}
+
+/* -------------------------------------------------------- dark glass panes */
+
+body[data-ds-dark-theme] {
+  --dsw-alias-bg-base: rgba(14, 10, 8, 0.9) !important;
+  --dsw-alias-bg-module-platform: rgba(16, 12, 9, 0.88) !important;
+  --dsw-alias-bg-layer-1: rgba(22, 17, 13, 0.84) !important;
+  --dsw-alias-bg-layer-2: rgba(26, 20, 16, 0.88) !important;
+  --dsw-alias-bg-layer-3: rgba(30, 23, 19, 0.92) !important;
+  --dsw-alias-settings-card-fill: rgba(24, 18, 15, 0.9) !important;
+  --dsw-specific-sidebar-fill: rgba(12, 8, 6, 0.56) !important;
+  --dsw-specific-input-major: rgba(28, 22, 18, 0.9) !important;
+  --dsw-specific-bubble: rgba(74, 40, 26, 0.84) !important;
+  --dsw-specific-tip: rgba(18, 13, 10, 0.9) !important;
+  --dsw-specific-selector: rgba(16, 11, 9, 0.88) !important;
+  --dsw-specific-menu: rgba(22, 17, 13, 0.98) !important;
+  --dsw-menu-surface-fill: rgba(22, 17, 13, 0.98) !important;
+}
+
+body[data-ds-dark-theme] #root div[class*="_centerCol"],
+body[data-ds-dark-theme] #root div[class*="_rightbarCol"] {
+  background-color: rgb(20, 15, 13) !important;
+}
+
+body[data-ds-dark-theme] #root div:has(> [data-conversation-content]) {
+  background-color: rgb(20, 15, 13) !important;
+  background-image:
+    linear-gradient(rgba(24, 19, 17, 0.5), rgba(24, 19, 17, 0.5)),
+    var(--dsh-skin-wallpaper) !important;
+  background-position: 50% 50%, 50% 44% !important;
+  background-size: cover, cover !important;
+  background-repeat: no-repeat, no-repeat !important;
+  background-attachment: fixed, fixed !important;
+  --dsw-alias-bg-base: rgba(24, 19, 17, 0.5) !important;
+  --dsw-alias-bg-module-platform: rgba(26, 20, 17, 0.5) !important;
+}
+
+body[data-ds-dark-theme] #root [data-shell-overlay] {
+  --dsw-alias-bg-base: rgba(16, 11, 9, 0.97) !important;
+}
+
+
+/* ------------------------------------------------------------- typography */
+
+/* One step up from the 14px default and one weight step heavier, so text holds
+ * up against the photo. Everything else in the type ladder is derived from
+ * `--dsh-content-font-size`, so headings and secondary text follow. */
+body {
+  --dsh-content-font-size: 16px !important;
+  --dsw-font-markdown-base-font-weight: 500 !important;
+  --dsw-font-markdown-base-strong-font-weight: 600 !important;
+  font-weight: 500;
+}
+
+/* --------------------------------------------------- navigation chrome */
+
+/* Left rail and the conversation header: black, heavier type, black icons.
+ * The token overrides reach labels and icons that read them, and the direct
+ * color covers whatever inherits instead. */
+#root div:has(> [data-shell-overlay]) > div:first-child,
+#root [class*="_sidebarCol"],
+header[data-window-drag],
+[data-conversation-tabs] {
+  color: #050505 !important;
+  --dsw-alias-label-primary: #050505 !important;
+  --dsw-alias-label-primary-bluish: #0b0908 !important;
+  --dsw-alias-label-secondary: #101010 !important;
+  --dsw-alias-label-tertiary: #1d1d1d !important;
+  --dsw-alias-label-caption: #262626 !important;
+  --dsw-alias-menu-icon: #050505 !important;
+}
+
+#root div:has(> [data-shell-overlay]) > div:first-child *,
+#root [class*="_sidebarCol"] *,
+header[data-window-drag] *,
+[data-conversation-tabs] * {
+  font-weight: 600 !important;
+}
+
+/* -------------------------------------------------------- chrome islands */
+
+/* The icon cluster at the header's top-right corner, sitting straight on the
+ * artwork: black glyphs, heavier type, nothing else repainted. The composer
+ * status pills along the bottom edge keep the host palette. */
+[data-conversation-header-corner],
+[data-sidebar-right-toggle],
+#root [class*="headerUtilities"],
+#root [class*="headerActions"] {
+  color: #050505 !important;
+  --dsw-alias-label-primary: #050505 !important;
+  --dsw-alias-label-secondary: #0c0c0c !important;
+  --dsw-alias-label-tertiary: #141414 !important;
+  --dsw-alias-label-caption: #1c1c1c !important;
+  --dsw-alias-menu-icon: #050505 !important;
+}
+
+[data-conversation-header-corner] *,
+[data-sidebar-right-toggle] *,
+#root [class*="headerUtilities"] *,
+#root [class*="headerActions"] * {
+  color: #050505 !important;
+  font-weight: 600 !important;
+}
+
+/* ------------------------------------------------------- composer status */
+
+/* The status pills sit straight on the artwork. A deeper warm gray and one
+ * weight step keep them readable without turning the footer into black bars. */
+[data-composer-stat] {
+  color: #4a3d31 !important;
+  --dsw-alias-label-tertiary: #4a3d31 !important;
+  --dsw-alias-label-secondary: #40342a !important;
+}
+
+[data-composer-stat] * {
+  color: #4a3d31 !important;
+  font-weight: 500 !important;
+}
+
+body[data-ds-dark-theme] [data-composer-stat] {
+  color: #cbbdae !important;
+  --dsw-alias-label-tertiary: #cbbdae !important;
+  --dsw-alias-label-secondary: #d8cbba !important;
+}
+
+body[data-ds-dark-theme] [data-composer-stat] * {
+  color: #cbbdae !important;
+  font-weight: 500 !important;
+}
+
+/* The context meter (ring + percentage) is its own control, not part of the
+ * status pills: the ring reads `label-tertiary` and `border-l3`, so both are
+ * deepened here. The trigger is the only header button with a 14px ring. */
+button[aria-haspopup="dialog"]:has(svg[viewBox="0 0 14 14"]) {
+  color: #4a3d31 !important;
+  --dsw-alias-label-tertiary: #4a3d31 !important;
+  --dsw-alias-border-l3: #9c8570 !important;
+  font-weight: 500 !important;
+}
+
+body[data-ds-dark-theme] button[aria-haspopup="dialog"]:has(svg[viewBox="0 0 14 14"]) {
+  color: #cbbdae !important;
+  --dsw-alias-label-tertiary: #cbbdae !important;
+  --dsw-alias-border-l3: #5a4a3c !important;
+}
+
+/* --------------------------------------------------- message action row */
+
+/* Copy / feedback / branch / usage / clock under a message. It sits directly
+ * on the artwork, so the tertiary gray it ships with disappears; one deeper
+ * warm gray covers the icons, the usage chip and the timestamp together. */
+div[data-clock][class*="_actions"] {
+  color: #4a3d31 !important;
+  --dsw-alias-label-tertiary: #4a3d31 !important;
+  --dsw-alias-label-secondary: #40342a !important;
+  font-weight: 500 !important;
+}
+
+div[data-clock][class*="_actions"] * {
+  color: #4a3d31 !important;
+}
+
+body[data-ds-dark-theme] div[data-clock][class*="_actions"] {
+  color: #cbbdae !important;
+  --dsw-alias-label-tertiary: #cbbdae !important;
+  --dsw-alias-label-secondary: #d8cbba !important;
+}
+
+body[data-ds-dark-theme] div[data-clock][class*="_actions"] * {
+  color: #cbbdae !important;
+}

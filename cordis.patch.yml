@@ -1,0 +1,4 @@
+# Installs the Lantern Glass row into the profile that selected this bundle.
+- insert:
+    - id: skin-lantern
+      name: dsh-skin-lantern

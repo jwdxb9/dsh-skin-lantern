@@ -1,0 +1,12 @@
+# The repository ships no artwork: drop your own picture in assets/ to build.
+# It is embedded into client.js by build.mjs, never committed.
+assets/
+*.jpg
+*.jpeg
+*.webp
+
+node_modules/
+data/
+*.log
+.DS_Store
+Thumbs.db

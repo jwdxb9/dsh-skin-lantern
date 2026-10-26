@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Lantern Glass">
+  <defs>
+    <linearGradient id="lantern" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd79a"/>
+      <stop offset="0.5" stop-color="#f47a3f"/>
+      <stop offset="1" stop-color="#b8301e"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#241812"/>
+  <path d="M32 8v5" stroke="#f6d9a8" stroke-width="2" stroke-linecap="round"/>
+  <rect x="22" y="13" width="20" height="4" rx="2" fill="#f6d9a8"/>
+  <path d="M21 17h22l2.6 5.4c3 6.6 3 19.6 0 26.2L43 54H21l-2.6-5.4c-3-6.6-3-19.6 0-26.2z" fill="url(#lantern)"/>
+  <path d="M32 18v35" stroke="#7d2416" stroke-width="1.6" opacity="0.4"/>
+  <path d="M26 18c-2 8-2 25 0 34M38 18c2 8 2 25 0 34" stroke="#7d2416" stroke-width="1.4" opacity="0.32"/>
+  <rect x="20" y="50" width="24" height="4" rx="2" fill="#f6d9a8"/>
+  <path d="M32 54v4" stroke="#f6d9a8" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="32" cy="60" r="2.2" fill="#e8492f"/>
+</svg>
