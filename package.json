@@ -12,6 +12,11 @@
     "wallpaper"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwdxb9/dsh-skin-lantern.git"
+  },
+  "homepage": "https://github.com/jwdxb9/dsh-skin-lantern#readme",
   "exports": {
     ".": "./index.js",
     "./client": "./client.js",
